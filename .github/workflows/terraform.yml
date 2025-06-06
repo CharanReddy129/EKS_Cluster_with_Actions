@@ -5,9 +5,10 @@ on:
         actions:
           description: 'Select the action to perform'
           required: true
-          default: 'apply'
+          default: 'plan'
           type: choice
           options:
+            - plan
             - apply
             - destroy
 
@@ -34,7 +35,7 @@ jobs:
           run: terraform init
     
         - name: Run Terraform plan
-          if: ${{ github.event.inputs.actions == 'apply' }}
+          if: ${{ github.event.inputs.actions == 'plan' }}
           run: terraform plan 
 
         - name: Run Terraform apply
